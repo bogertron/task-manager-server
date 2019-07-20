@@ -1,23 +1,19 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import re
-import os
+from taskmanager.context import app
 import json
+from taskmanager.dbservice.userservice import UserDataService
 
-def loadConfig(fileName):
-    with open(fileName) as json_data_file:
-        data = json.load(json_data_file)
-    repository = data["repository"]
-    dbUrl = "postgres://{0}:{1}@{2}:{3}/{4}".format(repository["user"], repository["password"], 
-        repository["host"], repository["port"], repository["schema"])
-    return dbUrl
-
-app = Flask(__name__)
-cfg = loadConfig(os.getcwd() + "/conf/config.json")
-app.config["SQLALCHEMY_DATABASE_URI"] = cfg
-db = SQLAlchemy(app)
+__userService = UserDataService()
 
 @app.route("/")
 def doRoot():
     return 'Start'
+
+@app.route("/users")
+def getUsers():
+    users = __userService.getAllUsers();
+    str = ""
+    for u in users:
+        str += "User: {0}\n".format(u.username)
+
+    return str

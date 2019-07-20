@@ -1,7 +1,7 @@
 import os
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from taskmanager.app import app, db
+from taskmanager.context import app, db
 import taskmanager.models
 
 migrate = Migrate(app, db)

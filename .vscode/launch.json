@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "./src/taskmanager/app.py",
+                "FLASK_APP": "./taskmanager/app.py",
             },
             "args": [
                 "run",
