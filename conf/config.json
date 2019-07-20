@@ -1,0 +1,9 @@
+{
+    "repository": {
+        "host": "localhost",
+        "user": "postgres",
+        "password": "postgres",
+        "schema": "task_manager",
+        "port":5433
+    }
+}
